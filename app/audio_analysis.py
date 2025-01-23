@@ -8,8 +8,8 @@ import openai  # Ensure you have the OpenAI package installed
 def infer_surroundings(audio_features):
     """Use GPT to infer possible surroundings based on audio features."""
     try:
-        openai.api_key = "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"
-
+        OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+        openai.api_key = OPENAI_API_KEY
         prompt = (
             f"Consider the following audio characteristics:\n"
             f"Tempo: {audio_features['tempo']} BPM,\n"
