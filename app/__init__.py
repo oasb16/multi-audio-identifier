@@ -15,6 +15,6 @@ def create_app():
     os.makedirs(app.config["ANALYSIS_FOLDER"], exist_ok=True)
 
     # Register the blueprint
-    app.register_blueprint(main_blueprint)
+    app.register_blueprint(main_blueprint, url_prefix="/audio")
 
     return app

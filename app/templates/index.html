@@ -4,13 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Analysis</title>
+    <script>
+        function getFilenameFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get("filename");
+        }
+    
+        function fetchAnalysisFromQuery() {
+            const audioFilename = getFilenameFromURL();
+            if (audioFilename) {
+                fetch(`/get_analysis/${audioFilename.split('.')[0]}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('status').innerText = "Analysis Completed!";
+                        document.getElementById('filename1').innerText = audioFilename;
+                        document.getElementById('tempo').innerText = data.tempo + " BPM";
+                        document.getElementById('duration').innerText = data.duration + " seconds";
+                        document.getElementById('rms_energy').innerText = data.rms_energy;
+                        document.getElementById('spectral_centroid').innerText = data.spectral_centroid;
+                        document.getElementById('spectral_bandwidth').innerText = data.spectral_bandwidth;
+                        document.getElementById('max_pitch').innerText = data.max_pitch;
+                        document.getElementById('inference').innerText = data.environment_inference;
+                    })
+                    .catch(error => {
+                        document.getElementById('status').innerHTML = error.message;
+                    });
+            }
+        }
+    
+        setInterval(fetchAnalysisFromQuery, 1000);
+    </script>
+    
+    
 </head>
 <body>
     <h1>Upload Audio for Analysis</h1>
-    <form action="/" method="post" enctype="multipart/form-data">
-        <input type="file" name="audio" accept=".wav,.mp3,.ogg" required>
+    <form id="audioForm" action="/" method="post" enctype="multipart/form-data">
+        <input type="file" id="audioFile" name="audio" accept=".wav,.mp3,.ogg" required>
         <button type="submit">Analyze</button>
     </form>
+    
 
     {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -21,5 +54,18 @@
             </ul>
         {% endif %}
     {% endwith %}
+
+    <h2>Analysis Results</h2>
+    <p id="status">Analysis in progress...</p>
+    <p><strong>File Name:</strong> <span id="filename1">N/A</span></p>
+    <p><strong>Tempo:</strong> <span id="tempo">N/A</span></p>
+    <p><strong>Duration:</strong> <span id="duration">N/A</span></p>
+    <p><strong>RMS Energy:</strong> <span id="rms_energy">N/A</span></p>
+    <p><strong>Spectral Centroid:</strong> <span id="spectral_centroid">N/A</span></p>
+    <p><strong>Spectral Bandwidth:</strong> <span id="spectral_bandwidth">N/A</span></p>
+    <p><strong>Max Pitch:</strong> <span id="max_pitch">N/A</span></p>
+    <h3>Environment Inference:</h3>
+    <h4><pre style="width:500px" id="inference">N/A</pre></h4>
+
 </body>
 </html>

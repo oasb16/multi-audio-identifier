@@ -1,0 +1,10 @@
+{
+    "filename": "siren.wav",
+    "tempo": 172.265625,
+    "duration": 11.337142857142856,
+    "rms_energy": 0.15417207777500153,
+    "spectral_centroid": 2929.8721781573427,
+    "spectral_bandwidth": 3145.390956432539,
+    "max_pitch": 3994.35205078125,
+    "environment_inference": "Imagine you're on a busy city street during peak hour. The tempo of 172.265625 BPM means the rhythm of the sounds around is fast and energetic, kind of similar to your heartbeat while running. The RMS energy being 0.15417207777500153 suggests that the overall sound is not too loud, perhaps like you're inside a shop on that busy street, somewhat insulated from the chaos outside. The spectral centroid figure of 2929.8721781573427 tells us you'd mostly hear high-pitched sounds, like birds chirping or glass clinking together. The spectral bandwidth at 3145.390956432539 signifies a wide range of frequencies, so there would be a mixture of sounds present, like murmurs of the crowd, car engines, and possibly music from nearby stores. Finally, the max pitch of 3994.35205078125 is like a sudden shrill sound cutting through the noisy environment--like a sudden break or someone whistling sharply. So overall, it's like being in a lively, bustling, yet not too overwhelming urban environment."
+}

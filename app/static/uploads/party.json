@@ -1,0 +1,10 @@
+{
+    "filename": "party.wav",
+    "tempo": 101.33272058823529,
+    "duration": 18.860408163265305,
+    "rms_energy": 0.07424771040678024,
+    "spectral_centroid": 573.5580967809819,
+    "spectral_bandwidth": 867.866921413403,
+    "max_pitch": 3868.03662109375,
+    "environment_inference": "The audio is moderately paced with a tempo matching a relaxed heartbeat. It's not very loud, offering a quiet, subtle experience. The spectral centroid indicates a sound quality that leans more towards the lower end of the spectrum, suggesting a warm, fuller texture rather than sharp or bright. The spectral bandwidth suggests some degree of varied frequencies in the mix, indicating a rich sound texture with both high and low pitches. The high maximum pitch means there are sharp, high-pitched sounds occasionally, like a sudden, brief ring of a bell or string instrument. This could be perceived as a soothing, comforting piece with underlying complexity and occasional striking elements."
+}

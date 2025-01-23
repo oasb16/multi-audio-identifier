@@ -5,14 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analysis Result</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        function fetchAnalysis() {
+            const filename = "{{ filename }}";
+            fetch(`/get_analysis/${filename}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('status').innerHTML = "Waiting for analysis...";
+                    } else {
+                        document.getElementById('status').innerHTML = "Analysis Completed!";
+                        document.getElementById('tempo').innerText = data.tempo + " BPM";
+                        document.getElementById('duration').innerText = data.duration + " seconds";
+                        document.getElementById('rms_energy').innerText = data.rms_energy;
+                        document.getElementById('spectral_centroid').innerText = data.spectral_centroid;
+                        document.getElementById('spectral_bandwidth').innerText = data.spectral_bandwidth;
+                        document.getElementById('max_pitch').innerText = data.max_pitch;
+                        document.getElementById('inference').innerText = data.environment_inference;
+                    }
+                })
+                .catch(error => console.error("Error fetching analysis:", error));
+        }
+    
+        setInterval(fetchAnalysis, 3000); // Fetch every 3 seconds
+    </script>
+    
 </head>
 <body>
     <div class="container">
+        
         <h1>Analysis Result</h1>
         <pre>{{ result }}</pre>
         <h3>Detected Situation:</h3>
         <p>{{ situation }}</p>
         <a href="{{ url_for('main.index') }}">Upload Another File</a>
+        <p id="status">Waiting for analysis...</p>
+        <h2>Analysis Details</h2>
+        <p><strong>Tempo:</strong> <span id="tempo">N/A</span></p>
+        <p><strong>Duration:</strong> <span id="duration">N/A</span></p>
+        <p><strong>RMS Energy:</strong> <span id="rms_energy">N/A</span></p>
+        <p><strong>Spectral Centroid:</strong> <span id="spectral_centroid">N/A</span></p>
+        <p><strong>Spectral Bandwidth:</strong> <span id="spectral_bandwidth">N/A</span></p>
+        <p><strong>Max Pitch:</strong> <span id="max_pitch">N/A</span></p>
+        <h3>Environment Inference:</h3>
+        <pre id="inference">N/A</pre>
+
     </div>
 </body>
 </html>
