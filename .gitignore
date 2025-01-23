@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment
+venv/
+env/
+*.env
+
+# IDE and editor-specific files
+.vscode/
+.idea/
+*.iml
+
+# Flask and local files
+instance/
+static/uploads/
+static/translated/
+.env
